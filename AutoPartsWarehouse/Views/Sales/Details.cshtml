@@ -1,0 +1,24 @@
+﻿@model AutoPartsWarehouse.Models.Sale
+@{ ViewData["Title"] = "Заказ"; }
+<h1>Продажа #@Model.Id</h1>
+<p>Клиент: @Model.ClientName | Авто: @Model.CarDetails | Дата: @Model.Date.ToShortDateString()</p>
+<hr />
+<h4>Позиции</h4>
+<p>
+    <!-- Ссылка на контроллер позиций -->
+    <a asp-controller="SalePositions" asp-action="Create" asp-route-saleId="@Model.Id" class="btn btn-success btn-sm">Добавить товар</a>
+</p>
+<table class="table table-sm">
+    <thead><tr><th>Товар</th><th>Кол-во</th><th>Цена</th><th>Сумма</th></tr></thead>
+    <tbody>
+    @foreach(var pos in Model.Positions) {
+        <tr>
+            <td>@pos.Part?.Name (@pos.Part?.Article)</td>
+            <td>@pos.Quantity</td>
+            <td>@pos.Price</td>
+            <td>@(pos.Quantity * pos.Price)</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<a asp-action="Index">К списку продаж</a>

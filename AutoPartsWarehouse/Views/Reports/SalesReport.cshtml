@@ -1,0 +1,16 @@
+﻿@model IEnumerable<AutoPartsWarehouse.Controllers.SalesStatsViewModel>
+@{ ViewData["Title"] = "Продажи"; }
+<h2>Продажи за период</h2>
+<form method="get" class="mb-3">
+    С: <input type="date" name="start" value="@ViewBag.Start?.ToString("yyyy-MM-dd")" />
+    По: <input type="date" name="end" value="@ViewBag.End?.ToString("yyyy-MM-dd")" />
+    <button type="submit" class="btn btn-sm btn-primary">Обновить</button>
+</form>
+<table class="table">
+    <thead><tr><th>Товар</th><th>Кол-во</th><th>Выручка</th></tr></thead>
+    <tbody>
+    @foreach(var item in Model) {
+        <tr><td>@item.PartName</td><td>@item.TotalQty</td><td>@item.TotalRevenue</td></tr>
+    }
+    </tbody>
+</table>

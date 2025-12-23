@@ -1,0 +1,9 @@
+﻿@model AutoPartsWarehouse.Models.Part
+@{ ViewData["Title"] = "Удалить"; }
+<h1>Удаление</h1>
+<h3>Вы уверены, что хотите удалить @Model.Name?</h3>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Удалить" class="btn btn-danger" /> |
+    <a asp-action="Index">Отмена</a>
+</form>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AutoPartsWarehouse.Models.ErrorViewModel">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.HomeController">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAIAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Models.PaginatedList&lt;T&gt;">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAEAAUAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>PaginatedList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Models.Part">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAAACAAAAAAAAABAAARAkAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Part.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.PartsController">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBACAAAAgAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>PartsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.ReportsController">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAIAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>ReportsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.LowStockViewModel">
+    <Position X="8" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAEACAAAQAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReportsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.SalesStatsViewModel">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ReportsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Models.Sale">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAgAAAAAAAAAAEAAAABQAAAAAAAAAA=</HashCode>
+      <FileName>Sale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Models.SalePosition">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAIAAIQAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAEAA=</HashCode>
+      <FileName>SalePosition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.SalePositionsController">
+    <Position X="2" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>SalePositionsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.SalesController">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAJBACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>SalesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Models.Stock">
+    <Position X="5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAIAAAAAAAAAIAAAAAAAAAAAAAAAAAgIAAAAA=</HashCode>
+      <FileName>Stock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.StocksController">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAACAAEAAAAAAAA=</HashCode>
+      <FileName>StocksController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Models.Supplier">
+    <Position X="3.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAAAAAAAAAAAAQAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Supplier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.SuppliersController">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBACAAAAAAAAgAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>SuppliersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.SuppliesController">
+    <Position X="2" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABBACAAAAAAAAAAAEAAEACAQEAAAAAAAA=</HashCode>
+      <FileName>SuppliesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Models.Supply">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAIAgAAAAAAAAAAAAAAABAAAAAAAgAAA=</HashCode>
+      <FileName>Supply.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Models.SupplyPosition">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAIAAAAAAAAABAAgAAAAAAAAAAAAAAgAAABAA=</HashCode>
+      <FileName>SupplyPosition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Controllers.SupplyPositionsController">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>SupplyPositionsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Data.DbInitializer">
+    <Position X="6.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoPartsWarehouse.Data.ApplicationDbContext">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAIAAABAABAAAkAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

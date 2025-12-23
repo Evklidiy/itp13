@@ -1,0 +1,19 @@
+﻿@model IEnumerable<AutoPartsWarehouse.Models.Stock>
+@{ ViewData["Title"] = "Склад"; }
+<h1>Остатки на складе</h1>
+<table class="table">
+    <thead>
+        <tr><th>Запчасть</th><th>Остаток</th><th>Мин. норма</th><th>Место</th><th></th></tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>@if(item.Part != null) { @if(item.Part != null) { @item.Part.Name } }</td>
+            <td>@item.Quantity</td>
+            <td>@item.MinQuantity</td>
+            <td>@item.Location</td>
+            <td><a asp-action="Edit" asp-route-id="@item.Id">Изменить место/норму</a></td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,15 @@
+﻿@model AutoPartsWarehouse.Models.Part
+@{ ViewData["Title"] = "Детали"; }
+<h1>Детали запчасти</h1>
+<dl class="row">
+    <dt class="col-sm-2">Артикул</dt>
+    <dd class="col-sm-10">@Model.Article</dd>
+    <dt class="col-sm-2">Название</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+    <dt class="col-sm-2">Остаток</dt>
+    <dd class="col-sm-10">
+        @if(Model.Stock != null) { @Model.Stock.Quantity } else { <text>0</text> }
+    </dd>
+</dl>
+<a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+<a asp-action="Index">Назад</a>

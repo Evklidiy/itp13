@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Главная панель";
+}
+
+<!-- Секция Hero (Баннер) -->
+<div class="hero-section text-center text-white">
+    <div class="container">
+        <h1 class="hero-title">Управление Складом Запчастей</h1>
+        <p class="lead mb-5">Профессиональное решение для автоматизации учета, продаж и поставок автозапчастей.</p>
+        <div>
+            <a asp-controller="Parts" asp-action="Index" class="btn btn-warning btn-lg me-3 shadow-lg">
+                <i class="fas fa-search"></i> Перейти в каталог
+            </a>
+            <a asp-controller="Reports" asp-action="Index" class="btn btn-outline-light btn-lg shadow-lg">
+                <i class="fas fa-chart-pie"></i> Аналитика
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Секция Карточек быстрого доступа -->
+<div class="row g-4">
+    <!-- Карточка 1: Продажи -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center py-4">
+            <div class="card-body">
+                <div class="mb-3 text-success">
+                    <i class="fas fa-cash-register fa-3x"></i>
+                </div>
+                <h3 class="card-title">Оформление Продаж</h3>
+                <p class="card-text text-muted">Быстрое создание заказов клиентов и автоматическое списание остатков.</p>
+                <a asp-controller="Sales" asp-action="Index" class="btn btn-outline-success stretched-link">Открыть журнал</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Карточка 2: Склад -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center py-4">
+            <div class="card-body">
+                <div class="mb-3 text-primary">
+                    <i class="fas fa-cubes fa-3x"></i>
+                </div>
+                <h3 class="card-title">Контроль Остатков</h3>
+                <p class="card-text text-muted">Мониторинг наличия запчастей, поиск по артикулу и управление ячейками.</p>
+                <a asp-controller="Stocks" asp-action="Index" class="btn btn-outline-primary stretched-link">Перейти на склад</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Карточка 3: Дефицит -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm text-center py-4">
+            <div class="card-body">
+                <div class="mb-3 text-danger">
+                    <i class="fas fa-exclamation-triangle fa-3x"></i>
+                </div>
+                <h3 class="card-title">Критические остатки</h3>
+                <p class="card-text text-muted">Автоматическое формирование списка товаров для заказа поставщикам.</p>
+                <a asp-controller="Reports" asp-action="LowStockReport" class="btn btn-outline-danger stretched-link">Проверить дефицит</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Секция статистики (декоративная) -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card border-0 shadow bg-white">
+            <div class="card-body d-flex justify-content-around align-items-center py-5">
+                <div class="text-center">
+                    <h2 class="fw-bold text-primary">24/7</h2>
+                    <p class="text-muted mb-0">Доступность</p>
+                </div>
+                <div class="border-end h-50"></div>
+                <div class="text-center">
+                    <h2 class="fw-bold text-success">100%</h2>
+                    <p class="text-muted mb-0">Точность учета</p>
+                </div>
+                <div class="border-end h-50"></div>
+                <div class="text-center">
+                    <h2 class="fw-bold text-warning">SQL</h2>
+                    <p class="text-muted mb-0">Надежная БД</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

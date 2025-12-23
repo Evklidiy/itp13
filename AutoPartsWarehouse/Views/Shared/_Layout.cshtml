@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AutoParts Pro</title>
+    
+    <!-- Подключаем Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    
+    <!-- Подключаем кастомные стили -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+    <!-- Шрифты Google Fonts (Roboto + Montserrat) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Иконки FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+    
+    <!-- Шапка сайта -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-custom-dark shadow">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-uppercase tracking-wide" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-cogs me-2 text-warning"></i>AutoParts<span class="text-primary-light">Warehouse</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav ms-auto flex-grow-1 justify-content-end">
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" asp-controller="Parts" asp-action="Index"><i class="fas fa-search me-1"></i> Каталог</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" asp-controller="Stocks" asp-action="Index"><i class="fas fa-warehouse me-1"></i> Склад</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" asp-controller="Sales" asp-action="Index"><i class="fas fa-shopping-cart me-1"></i> Продажи</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" asp-controller="Supplies" asp-action="Index"><i class="fas fa-truck me-1"></i> Поставки</a>
+                        </li>
+                         <li class="nav-item mx-1">
+                            <a class="nav-link" asp-controller="Suppliers" asp-action="Index"><i class="fas fa-handshake me-1"></i> Партнеры</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link btn btn-outline-light btn-sm ms-2 px-3" asp-controller="Reports" asp-action="Index">
+                                <i class="fas fa-chart-line me-1"></i> Отчеты
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <div class="container my-5 flex-grow-1">
+        <main role="main" class="pb-3 animate-fade-in">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer mt-auto py-4 bg-dark text-white">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-uppercase mb-3 font-weight-bold text-warning">AutoParts Warehouse</h5>
+                    <p class="small text-muted">Современная система управления складскими запасами автозапчастей. Вариант №41.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-uppercase mb-3">Навигация</h5>
+                    <ul class="list-unstyled">
+                        <li><a asp-controller="Home" asp-action="Index" class="text-white-50 text-decoration-none">Главная</a></li>
+                        <li><a asp-controller="Parts" asp-action="Index" class="text-white-50 text-decoration-none">Каталог</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <p class="small text-muted">&copy; 2025 - Курсовой проект.<br>Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

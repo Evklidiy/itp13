@@ -1,0 +1,51 @@
+﻿@model AutoPartsWarehouse.Models.PaginatedList<AutoPartsWarehouse.Models.Part>
+@{ ViewData["Title"] = "Запчасти"; }
+
+<h1>Каталог запчастей</h1>
+<p><a asp-action="Create" class="btn btn-primary">Создать новую</a></p>
+
+<form asp-action="Index" method="get">
+    <div class="input-group mb-3">
+        <input type="text" name="SearchString" class="form-control" placeholder="Поиск по названию, артикулу..." value="@ViewData["CurrentFilter"]">
+        <button class="btn btn-outline-secondary" type="submit">Найти</button>
+        <a asp-action="Index" class="btn btn-outline-dark">Сброс</a>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Артикул</th>
+            <th>Название</th>
+            <th>Производитель</th>
+            <th>Цена продажи</th>
+            <th>Остаток</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>@item.Article</td>
+            <td>@item.Name</td>
+            <td>@item.Manufacturer</td>
+            <td>@item.SalePrice</td>
+            <td>
+                @if(item.Stock != null) { @item.Stock.Quantity } else { <text>0</text> }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Ред.</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]" class="btn btn-default @prevDisabled">Назад</a>
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]" class="btn btn-default @nextDisabled">Вперед</a>

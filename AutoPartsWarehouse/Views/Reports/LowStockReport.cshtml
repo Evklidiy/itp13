@@ -1,0 +1,17 @@
+﻿@model IEnumerable<AutoPartsWarehouse.Controllers.LowStockViewModel>
+@{ ViewData["Title"] = "Дефицит"; }
+<h2>Рекомендуемый заказ</h2>
+<table class="table table-bordered">
+    <thead><tr><th>Артикул</th><th>Название</th><th>Остаток</th><th>Мин</th><th>Заказать</th></tr></thead>
+    <tbody>
+    @foreach(var item in Model) {
+        <tr>
+            <td>@item.Article</td>
+            <td>@item.Name</td>
+            <td class="text-danger">@item.Current</td>
+            <td>@item.Min</td>
+            <td><b>@item.ToOrder</b></td>
+        </tr>
+    }
+    </tbody>
+</table>

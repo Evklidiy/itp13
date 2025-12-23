@@ -1,0 +1,18 @@
+﻿@model AutoPartsWarehouse.Models.Supplier
+@{ ViewData["Title"] = "Новый поставщик"; }
+<h1>Создать поставщика</h1>
+<form asp-action="Create">
+    <div class="form-group mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Contacts"></label>
+        <input asp-for="Contacts" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" class="form-control" type="number" min="0" max="5" />
+    </div>
+    <button type="submit" class="btn btn-primary">Создать</button>
+</form>

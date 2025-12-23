@@ -1,0 +1,20 @@
+﻿@model AutoPartsWarehouse.Models.Stock
+@{ ViewData["Title"] = "Настройка склада"; }
+<h1>Настройка хранения</h1>
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="PartId" />
+    <!-- Quantity не редактируем вручную, оно считается от продаж/поставок -->
+    <div class="form-group mb-3">
+        <label>Запчасть: @Model.Part?.Name</label>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="MinQuantity"></label>
+        <input asp-for="MinQuantity" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

@@ -1,0 +1,59 @@
+﻿@model AutoPartsWarehouse.Models.Supply
+
+@{
+    ViewData["Title"] = "Детали поставки";
+}
+
+<h1>Поставка #@Model.Id</h1>
+
+<div>
+    <h4>Информация</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Дата</dt>
+        <dd class="col-sm-10">@Model.Date.ToShortDateString()</dd>
+        
+        <dt class="col-sm-2">Поставщик</dt>
+        <dd class="col-sm-10">
+            @if(Model.Supplier != null) { @Model.Supplier.Name } else { <text>-</text> }
+        </dd>
+
+        <dt class="col-sm-2">Статус</dt>
+        <dd class="col-sm-10">@Model.Status</dd>
+    </dl>
+</div>
+
+<hr />
+<h4>Состав поставки (Товары)</h4>
+<p>
+    <a asp-controller="SupplyPositions" asp-action="Create" asp-route-supplyId="@Model.Id" class="btn btn-success">
+        + Добавить товар (Приход на склад)
+    </a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Запчасть</th>
+            <th>Количество</th>
+            <th>Цена закупки</th>
+            <th>Сумма</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pos in Model.Positions)
+        {
+            <tr>
+                <td>@pos.Part?.Name (@pos.Part?.Article)</td>
+                <td>@pos.Quantity</td>
+                <td>@pos.PurchasePrice</td>
+                <td>@(pos.Quantity * pos.PurchasePrice)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Редактировать шапку</a> |
+    <a asp-action="Index">К списку поставок</a>
+</div>

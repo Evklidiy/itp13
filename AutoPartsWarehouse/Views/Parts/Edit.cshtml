@@ -1,0 +1,33 @@
+﻿@model AutoPartsWarehouse.Models.Part
+@{ ViewData["Title"] = "Редактировать"; }
+<h1>Редактирование</h1>
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <!-- Поля те же, что и в Create -->
+    <div class="form-group mb-3">
+        <label asp-for="Article"></label>
+        <input asp-for="Article" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Manufacturer"></label>
+        <input asp-for="Manufacturer" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="CompatibleModels"></label>
+        <input asp-for="CompatibleModels" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="PurchasePrice"></label>
+        <input asp-for="PurchasePrice" class="form-control" type="number" step="0.01"/>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="SalePrice"></label>
+        <input asp-for="SalePrice" class="form-control" type="number" step="0.01" />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

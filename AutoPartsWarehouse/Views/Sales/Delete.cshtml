@@ -1,0 +1,39 @@
+﻿@model AutoPartsWarehouse.Models.Sale
+
+@{
+    ViewData["Title"] = "Удаление продажи";
+}
+
+<h1>Удаление</h1>
+
+<h3>Вы уверены, что хотите удалить эту запись о продаже?</h3>
+<div>
+    <h4>Продажа</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Date.ToShortDateString()
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ClientName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClientName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CarDetails)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CarDetails)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Отмена</a>
+    </form>
+</div>
