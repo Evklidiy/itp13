@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPartsWarehouse", "AutoP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPartsWarehouse.Tests", "AutoPartsWarehouse.Tests\AutoPartsWarehouse.Tests.csproj", "{4DB21F52-8217-416E-8D89-C17706FAF362}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{75CEA92A-F973-441D-A34C-86DD5CF2AF66}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{4DB21F52-8217-416E-8D89-C17706FAF362}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DB21F52-8217-416E-8D89-C17706FAF362}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DB21F52-8217-416E-8D89-C17706FAF362}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75CEA92A-F973-441D-A34C-86DD5CF2AF66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75CEA92A-F973-441D-A34C-86DD5CF2AF66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75CEA92A-F973-441D-A34C-86DD5CF2AF66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75CEA92A-F973-441D-A34C-86DD5CF2AF66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

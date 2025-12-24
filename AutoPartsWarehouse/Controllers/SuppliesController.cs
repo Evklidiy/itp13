@@ -15,22 +15,20 @@ namespace AutoPartsWarehouse.Controllers
             _context = context;
         }
 
-        // GET: Supplies
         public async Task<IActionResult> Index()
         {
             var appDbContext = _context.Supplies.Include(s => s.Supplier);
             return View(await appDbContext.ToListAsync());
         }
 
-        // GET: Supplies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
 
             var supply = await _context.Supplies
                 .Include(s => s.Supplier)
-                .Include(s => s.Positions) // Подгружаем позиции
-                .ThenInclude(p => p.Part) // Подгружаем названия запчастей
+                .Include(s => s.Positions)
+                .ThenInclude(p => p.Part)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (supply == null) return NotFound();
@@ -38,14 +36,12 @@ namespace AutoPartsWarehouse.Controllers
             return View(supply);
         }
 
-        // GET: Supplies/Create
         public IActionResult Create()
         {
             ViewData["SupplierId"] = new SelectList(_context.Suppliers, "Id", "Name");
             return View();
         }
 
-        // POST: Supplies/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,SupplierId,Date,Status")] Supply supply)
@@ -60,7 +56,6 @@ namespace AutoPartsWarehouse.Controllers
             return View(supply);
         }
 
-        // GET: Supplies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -71,7 +66,7 @@ namespace AutoPartsWarehouse.Controllers
             return View(supply);
         }
 
-        // POST: Supplies/Edit/5
+        // САМОЕ ВАЖНОЕ: Обработка смены статуса
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,SupplierId,Date,Status")] Supply supply)
@@ -82,6 +77,27 @@ namespace AutoPartsWarehouse.Controllers
             {
                 try
                 {
+                    // Получаем СТАРУЮ версию из базы (без отслеживания, чтобы не конфликтовать)
+                    var oldSupply = await _context.Supplies.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
+
+                    // Если статус изменился с "Ожидается" (или любого другого) на "Получена"
+                    if (oldSupply.Status != "Получена" && supply.Status == "Получена")
+                    {
+                        // Загружаем позиции этой поставки
+                        var positions = await _context.SupplyPositions.Where(p => p.SupplyId == id).ToListAsync();
+
+                        // Проходим по всем позициям и начисляем на склад
+                        foreach (var pos in positions)
+                        {
+                            var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.PartId == pos.PartId);
+                            if (stock != null)
+                            {
+                                stock.Quantity += pos.Quantity;
+                                _context.Update(stock);
+                            }
+                        }
+                    }
+
                     _context.Update(supply);
                     await _context.SaveChangesAsync();
                 }
@@ -96,21 +112,14 @@ namespace AutoPartsWarehouse.Controllers
             return View(supply);
         }
 
-        // GET: Supplies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
-
-            var supply = await _context.Supplies
-                .Include(s => s.Supplier)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
+            var supply = await _context.Supplies.Include(s => s.Supplier).FirstOrDefaultAsync(m => m.Id == id);
             if (supply == null) return NotFound();
-
             return View(supply);
         }
 
-        // POST: Supplies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

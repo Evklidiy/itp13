@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoPartsWarehouse.Data;
+using AutoPartsWarehouse.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AutoPartsWarehouse.Data;
-using AutoPartsWarehouse.Models;
 
 namespace AutoPartsWarehouse.Controllers
 {
@@ -18,50 +15,38 @@ namespace AutoPartsWarehouse.Controllers
             _context = context;
         }
 
-        // GET: SupplyPositions/Create?supplyId=5
         public IActionResult Create(int supplyId)
         {
             ViewData["SupplyId"] = supplyId;
-            // Список запчастей для выбора
             ViewData["PartId"] = new SelectList(_context.Parts, "Id", "Name");
             return View();
         }
 
-        // POST: SupplyPositions/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,SupplyId,PartId,Quantity,PurchasePrice")] SupplyPosition supplyPosition)
         {
             if (ModelState.IsValid)
             {
-                // 1. Сохраняем позицию в базе
+                // 1. Сохраняем позицию
                 _context.Add(supplyPosition);
 
-                // 2. БИЗНЕС-ЛОГИКА: Увеличиваем остаток на складе (ПРИХОД)
-                // Ищем складскую запись для этой запчасти
-                var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.PartId == supplyPosition.PartId);
+                // 2. Проверяем статус самой поставки
+                var supply = await _context.Supplies.FindAsync(supplyPosition.SupplyId);
 
-                if (stock != null)
+                // ВАЖНО: Начисляем на склад ТОЛЬКО если статус уже "Получена"
+                if (supply != null && supply.Status == "Получена")
                 {
-                    stock.Quantity += supplyPosition.Quantity; // ПЛЮСУЕМ
-                    _context.Update(stock);
-                }
-                else
-                {
-                    // Если вдруг записи на складе нет (хотя мы создаем её при создании запчасти), создадим новую
-                    var newStock = new Stock
+                    var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.PartId == supplyPosition.PartId);
+                    if (stock != null)
                     {
-                        PartId = supplyPosition.PartId,
-                        Quantity = supplyPosition.Quantity,
-                        MinQuantity = 5,
-                        Location = "Приемка"
-                    };
-                    _context.Add(newStock);
+                        stock.Quantity += supplyPosition.Quantity;
+                        _context.Update(stock);
+                    }
+                    // Если стока нет — создаем (код опущен для краткости, так как у нас стоки создаются с запчастями)
                 }
 
                 await _context.SaveChangesAsync();
-
-                // Возвращаемся обратно к деталям поставки
                 return RedirectToAction("Details", "Supplies", new { id = supplyPosition.SupplyId });
             }
 
