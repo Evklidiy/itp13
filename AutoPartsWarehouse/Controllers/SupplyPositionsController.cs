@@ -54,5 +54,49 @@ namespace AutoPartsWarehouse.Controllers
             ViewData["PartId"] = new SelectList(_context.Parts, "Id", "Name", supplyPosition.PartId);
             return View(supplyPosition);
         }
+
+        // GET: SupplyPositions/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var supplyPosition = await _context.SupplyPositions.FindAsync(id);
+            if (supplyPosition == null) return NotFound();
+
+            ViewData["PartId"] = new SelectList(_context.Parts, "Id", "Name", supplyPosition.PartId);
+            ViewData["SupplyId"] = supplyPosition.SupplyId; // Для возврата назад
+            return View(supplyPosition);
+        }
+
+        // POST: SupplyPositions/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SupplyId,PartId,Quantity,PurchasePrice")] SupplyPosition supplyPosition)
+        {
+            if (id != supplyPosition.Id) return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Важное примечание: В базовой версии мы просто обновляем запись.
+                    // Если нужно пересчитывать склад при изменении количества "задним числом",
+                    // логика будет намного сложнее (надо знать старое количество).
+                    // Для курсовой обычно достаточно простого обновления записи.
+
+                    _context.Update(supplyPosition);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_context.SupplyPositions.Any(e => e.Id == supplyPosition.Id)) return NotFound();
+                    else throw;
+                }
+                // Возвращаемся в детали поставки
+                return RedirectToAction("Details", "Supplies", new { id = supplyPosition.SupplyId });
+            }
+            ViewData["PartId"] = new SelectList(_context.Parts, "Id", "Name", supplyPosition.PartId);
+            return View(supplyPosition);
+        }
     }
 }

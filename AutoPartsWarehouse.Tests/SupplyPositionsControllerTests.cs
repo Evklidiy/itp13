@@ -32,7 +32,8 @@ namespace AutoPartsWarehouse.Tests
             var stock = new Stock { PartId = part.Id, Quantity = 10 };
             context.Stocks.Add(stock);
 
-            var supply = new Supply { Status = "New" };
+            // ИСПРАВЛЕНИЕ: Ставим статус "Получена", чтобы сработала логика начисления!
+            var supply = new Supply { Status = "Получена" };
             context.Supplies.Add(supply);
             await context.SaveChangesAsync();
 

@@ -1,24 +1,73 @@
 ﻿@model AutoPartsWarehouse.Models.Sale
-@{ ViewData["Title"] = "Заказ"; }
+
+@{
+    ViewData["Title"] = "Детали продажи";
+}
+
 <h1>Продажа #@Model.Id</h1>
-<p>Клиент: @Model.ClientName | Авто: @Model.CarDetails | Дата: @Model.Date.ToShortDateString()</p>
+
+<div>
+    <h4>Информация о заказе</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Дата</dt>
+        <dd class="col-sm-10">@Model.Date.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Клиент</dt>
+        <dd class="col-sm-10">@Model.ClientName</dd>
+
+        <dt class="col-sm-2">Автомобиль</dt>
+        <dd class="col-sm-10">@Model.CarDetails</dd>
+    </dl>
+</div>
+
 <hr />
-<h4>Позиции</h4>
-<p>
-    <!-- Ссылка на контроллер позиций -->
-    <a asp-controller="SalePositions" asp-action="Create" asp-route-saleId="@Model.Id" class="btn btn-success btn-sm">Добавить товар</a>
-</p>
-<table class="table table-sm">
-    <thead><tr><th>Товар</th><th>Кол-во</th><th>Цена</th><th>Сумма</th></tr></thead>
-    <tbody>
-    @foreach(var pos in Model.Positions) {
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Позиции чека</h4>
+    <a asp-controller="SalePositions" asp-action="Create" asp-route-saleId="@Model.Id" class="btn btn-success">
+        <i class="fas fa-plus"></i> Добавить товар
+    </a>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
         <tr>
-            <td>@pos.Part?.Name (@pos.Part?.Article)</td>
-            <td>@pos.Quantity</td>
-            <td>@pos.Price</td>
-            <td>@(pos.Quantity * pos.Price)</td>
+            <th>Товар</th>
+            <th>Кол-во</th>
+            <th>Цена продажи</th>
+            <th>Сумма</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model.Positions) {
+        <tr>
+            <td>@item.Part?.Name (@item.Part?.Article)</td>
+            <td>@item.Quantity</td>
+            <td>@item.Price</td>
+            <td>@(item.Quantity * item.Price)</td>
+            <td>
+                <div class="btn-group">
+                    <a asp-controller="SalePositions" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning" title="Редактировать">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a asp-controller="SalePositions" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Удалить">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            </td>
         </tr>
     }
     </tbody>
+    <tfoot>
+        <tr class="fw-bold">
+            <td colspan="3" class="text-end">ИТОГО:</td>
+            <td>@Model.Positions.Sum(x => x.Quantity * x.Price)</td>
+            <td></td>
+        </tr>
+    </tfoot>
 </table>
-<a asp-action="Index">К списку продаж</a>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">К журналу продаж</a>
+</div>
