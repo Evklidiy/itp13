@@ -1,4 +1,5 @@
-﻿using AutoPartsWarehouse.Data;
+﻿//запасы
+using AutoPartsWarehouse.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

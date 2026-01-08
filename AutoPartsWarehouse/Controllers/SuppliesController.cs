@@ -1,4 +1,5 @@
-﻿using AutoPartsWarehouse.Data;
+﻿//поставки
+using AutoPartsWarehouse.Data;
 using AutoPartsWarehouse.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
